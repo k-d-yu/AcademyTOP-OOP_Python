@@ -231,6 +231,7 @@
 # print("Численность роботов:", Robot.k)
 
 # class Point:
+#     __slots__ = ["__x", "__y", "z"]
 #     def __init__(self, x, y):
 #         self.__x = self.__y = 0
 #         if Point.__check_value(x) and Point.__check_value(y):
@@ -260,4 +261,214 @@
 #
 # p1._Point__x = 111
 # print(p1.__dict__)
+# p1.z = 15
+# print(p1.__dict__)
 
+# class Point:
+#     def __init__(self, x=0, y=0):
+#         self.__x = x
+#         self.__y = y
+#
+#     def __set_x(self, x):
+#         print("Вызов __set_x")
+#         self.__x = x
+#
+#     def __get_x(self):
+#         print("Вызов __get_x")
+#         return self.__x
+#
+#     def __del_x(self):
+#         print("Удаление свойства")
+#         del self.__x
+#
+#     x = property(__get_x, __set_x, __del_x)
+#
+#
+# p1 = Point(5, 10)
+# p1.x = 100
+# print(p1.x)
+# del p1.x
+
+# class Point:
+#     def __init__(self, x=0, y=0):
+#         self.__x = x
+#         self.__y = y
+#
+#     @property
+#     def x(self):  # __get_x
+#         print("Вызов __get_x")
+#         return self.__x
+#
+#     @x.setter
+#     def x(self, x):  # __set_x
+#         print("Вызов __set_x")
+#         self.__x = x
+#
+#     @x.deleter
+#     def x(self):  # __del_x
+#         print("Удаление свойства")
+#         del self.__x
+#
+#     # x = property(__get_x, __set_x, __del_x)
+#
+#
+# p1 = Point(5, 10)
+# p1.x = 100
+# print(p1.x)
+# del p1.x
+
+
+# class KgToPounds:
+#     def __init__(self, kg):
+#         self.__kg = kg
+#
+#     @property
+#     def kg(self):
+#         return self.__kg
+#
+#     @kg.setter
+#     def kg(self, new_kg):
+#         if isinstance(new_kg, (int, float)):
+#             self.__kg = new_kg
+#         else:
+#             print("Необходимо ввести число!")
+#
+#     def to_pounds(self):
+#         return self.__kg * 2.205
+#
+#
+# weight = KgToPounds(12)
+# print(weight.kg, "кг =>", end=" ")
+# print(weight.to_pounds(), "фунтов")
+# weight.kg = 41
+# print(weight.kg, "кг =>", end=" ")
+# print(weight.to_pounds(), "фунтов")
+
+# class Person:
+#     def __init__(self, name, age):
+#         self.__name = name
+#         self.__age = age
+#
+#     @property
+#     def name(self):
+#         return self.__name
+#
+#     @property
+#     def age(self):
+#         return self.__age
+#
+#     @name.setter
+#     def name(self, name):
+#         self.__name = name
+#
+#     @age.setter
+#     def age(self, age):
+#         self.__age = age
+#
+#     @name.deleter
+#     def name(self):
+#         del self.__name
+#
+#     @age.deleter
+#     def age(self):
+#         del self.__age
+#
+#
+# p1 = Person("John", 33)
+# print(p1.name, p1.age)
+# p1.name = "Bill"
+# p1.age = 77
+# print(p1.name, p1.age)
+# del p1.name
+# p2 = Person("Den", 11)
+# print(p2.name, p2.age)
+# print(p1.__dict__)
+
+# class Point:
+#     __count = 0
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#         Point.__count += 1
+#
+#     @staticmethod
+#     def get_count():
+#         return Point.__count
+#
+#
+# p1 = Point(5, 10)
+# p2 = Point(4, 8)
+# p3 = Point(2, 7)
+# print(Point.get_count())
+# print(p1.get_count())
+
+# class Change:
+#     @staticmethod
+#     def inc(x):
+#         return x + 1
+#
+#     @staticmethod
+#     def dec(x):
+#         return x - 1
+#
+#
+# print(Change.inc(10), Change.dec(10))
+
+
+# class Args:
+#     @staticmethod
+#     def max_(*args):
+#         return max(args)
+#
+#     @staticmethod
+#     def min_(*args):
+#         return min(args)
+#
+#     @staticmethod
+#     def arf(*args):
+#         return sum(args) / len(args)
+#
+#     @staticmethod
+#     def factorial(x):
+#         first = 1
+#         for i in range(1, x + 1):
+#             first *= i
+#         return first
+#
+#
+# print(Args.max_(1, 2, 3, 4))
+# print(Args.min_(1, 2, 3, 4))
+# print(Args.arf(1, 2, 3, 4))
+# print(Args.factorial(6))
+
+# class Numbers:
+#     @staticmethod
+#     def max(*args):
+#         max1 = 0
+#         for i in args:
+#             max1 = max1 if i < max1 else i
+#         return max1
+#
+#
+# print(Numbers.max(3, 5, 7, 9))
+
+
+# class Date:
+#     def __init__(self, day, month, year):
+#         self.day = day
+#         self.month = month
+#         self.year = year
+#
+#     @classmethod
+#     def from_string(cls, date_as_string):
+#         day, month, year = map(int, date_as_string.split("."))
+#         date1 = cls(day, month, year)
+#         return date1
+#
+#     def string_to_db(self):
+#         return f"{self.year}-{self.month}-{self.day}"
+#
+#
+# string_date = Date.from_string("23.10.2022")
+# print(string_date.string_to_db())
