@@ -27,7 +27,6 @@
 # print("Point = ", Point.y)
 import re
 
-
 # class Point:
 #     """Класс для представления координат точек на плоскости"""
 #     x = 1
@@ -912,3 +911,165 @@ import re
 #
 # line = Line(Point(1, 2), Point(10, 20))
 # line.draw_line()
+
+
+# from abc import ABC, abstractmethod
+#
+#
+# class Chess(ABC):
+#     def draw(self):
+#         print("Нарисовал шахматную фигуру")
+#
+#     @abstractmethod
+#     def move(self):
+#         print("Родитель")
+#
+#
+# class Queen(Chess):
+#     def move(self):
+#         super().move()
+#         print("Переместил шахматную фигуру")
+#
+#
+# q = Queen()
+# q.draw()
+# q.move()
+
+# from abc import ABC, abstractmethod
+#
+#
+# class Currency(ABC):
+#     def __init__(self, value):
+#         self.value = value
+#
+#     @abstractmethod
+#     def convert_to_rub(self):
+#         pass
+#
+#     @abstractmethod
+#     def print_value(self):
+#         print(self.value, end=" ")
+#
+#
+# class Dollar(Currency):
+#     rate_to_rub = 74.16
+#     suffix = "USD"
+#
+#     def convert_to_rub(self):
+#         rub = self.value * Dollar.rate_to_rub
+#         return rub
+#
+#     def print_value(self):
+#         super().print_value()
+#         print(Dollar.suffix, end=" ")
+#
+#
+# class EUR(Currency):
+#     rate_to_rub = 90.14
+#     suffix = "EUR"
+#
+#     def convert_to_rub(self):
+#         rub = self.value * EUR.rate_to_rub
+#         return rub
+#
+#     def print_value(self):
+#         super().print_value()
+#         print(EUR.suffix, end=" ")
+#
+#
+# d = [Dollar(5), Dollar(10), Dollar(50), Dollar(100)]
+# print("*" * 50)
+# for elem in d:
+#     elem.print_value()
+#     print(f"= {elem.convert_to_rub():.2f} RUB")
+#
+#
+# e = [EUR(5), EUR(10), EUR(50), EUR(100)]
+# print("*" * 50)
+# for elem in e:
+#     elem.print_value()
+#     print(f"= {elem.convert_to_rub():.2f} RUB")
+
+
+# from abc import ABC, abstractmethod
+#
+#
+# class Father(ABC):
+#     @abstractmethod
+#     def display1(self):
+#         pass
+#
+#     @abstractmethod
+#     def display2(self):
+#         pass
+#
+#
+# class Child(Father):
+#     def display1(self):
+#         print("Дочерний класс")
+#
+#
+# class GrandChild(Child):
+#     def display2(self):
+#         print("Внучатый класс")
+#
+#
+# gc = GrandChild()
+# gc.display2()
+# gc.display1()
+
+# ВЛОЖЕННЫЕ КЛАССЫ
+
+# class MyOuter:
+#     age = 18
+#
+#     def __init__(self, name):
+#         self.name = name
+#
+#     @staticmethod
+#     def outer_class_method():
+#         print("Я метод внешнего класса")
+#
+#     def outer_obj_method(self):
+#         print("Связующий метод")
+#
+#     class MyInner:
+#         def __init__(self, inner_name, obj):
+#             self.inner_name = inner_name
+#             self.obj = obj
+#
+#         def inner_method(self):
+#             print("Я метод вложенного класса", MyOuter.age)
+#             MyOuter.outer_class_method()
+#             self.obj.outer_obj_method()
+#
+#
+# out = MyOuter("Внешний")
+# print(out.name)
+# inner = out.MyInner("Внутренний", out)
+# print(inner.inner_name)
+# inner.inner_method()
+
+class Color:
+    def __init__(self):
+        self.name = "Green"
+        self.lg = self.LightGreen()
+
+    def show(self):
+        print("Name:", self.name)
+
+    class LightGreen:
+        def __init__(self):
+            self.name = "Light green"
+            self.code = "024avc"
+
+        def display(self):
+            print("Name:", self.name)
+            print("Code:", self.code)
+
+
+outer = Color()
+outer.show()
+
+g = outer.lg
+g.display()
